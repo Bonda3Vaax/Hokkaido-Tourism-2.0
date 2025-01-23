@@ -1,0 +1,897 @@
+/* Importing Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Yuji+Mai&display=swap');
+
+/* Root Variables */
+:root {
+    --background: rgb(0, 0, 0); /* Primary background color */
+    --light: rgb(255, 255, 255); /* Light color for text */
+    --red: rgb(255, 0, 0); /* Accent red color */
+    --orange: #ffa200; /* Accent orange color */
+}
+
+/* Universal Reset */
+*, *::before, *::after {
+    box-sizing: border-box; /* Ensure consistent box model */
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove default padding */
+}
+
+/* Body Styles */
+body {
+    background-color: var(--light); /* Set light background */
+    font-family: 'Yuji Mai', Arial, Helvetica, sans-serif; /* Use imported font */
+    font-weight: 300; /* Light font weight */
+    text-align: center; /* Center-align text */
+}
+
+/* Typography */
+h1 {
+    font-size: 2.5em; /* Larger font for headings */
+}
+
+h2 {
+    color: #FF4E50; /* Initial color matching button */
+    font-size: 5em; /* Large heading size */
+    font-weight: bold; /* Bold font weight */
+    font-style: oblique; /* Italicized for emphasis */
+    animation: christmasTreeEffect 10s infinite linear; /* Smooth color transition */
+    text-shadow: 2px 2px 4px black, 0 0 10px rgba(0, 0, 0, 0.8); /* Add shadow for contrast */
+}
+
+/* Keyframes for smoother Christmas tree effect */
+@keyframes christmasTreeEffect {
+    0% {
+        color: #FF4E50; /* Start with red tone */
+        text-shadow: 2px 2px 4px black, 0 0 10px #FF4E50, 0 0 20px #FF4E50, 0 0 30px #FF4E50;
+    }
+    25% {
+        color: #F9D423; /* Transition to yellow */
+        text-shadow: 2px 2px 4px black, 0 0 10px #F9D423, 0 0 20px #F9D423, 0 0 30px #F9D423;
+    }
+    50% {
+        color: black; /* Contrast with black */
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 0 0 10px black;
+    }
+    75% {
+        color: #F9A63E; /* Transition to orange-yellow */
+        text-shadow: 2px 2px 4px black, 0 0 10px #F9A63E, 0 0 20px #F9A63E, 0 0 30px #F9A63E;
+    }
+    100% {
+        color: #FF4E50; /* Loop back to red */
+        text-shadow: 2px 2px 4px black, 0 0 10px #FF4E50, 0 0 20px #FF4E50, 0 0 30px #FF4E50;
+    }
+}
+
+h3, h4 {
+    font-style: oblique; /* Italicized for emphasis */
+}
+
+h3 {
+    font-size: 1.25em; /* Medium heading size */
+}
+
+h4 {
+    font-size: 1.3em; /* Slightly larger heading */
+}
+
+h5 {
+    font-size: 1em; /* Default heading size */
+}
+/* Header Styles */
+.header-container {
+    display: flex; /* Flex layout for alignment */
+    align-items: center; /* Vertically center items */
+    justify-content: center; /* Center content horizontally */
+    padding: 1rem 2rem; /* Spacing around header */
+    background: transparent; /* Transparent background initially */
+    transition: background 0.5s ease; /* Smooth transition for background */
+    position: fixed; /* Fixed position at the top */
+    top: 0; /* Align to top of viewport */
+    left: 0; /* Align to left of viewport */
+    width: 100%; /* Full width */
+    z-index: 999; /* Ensure header is above other elements */
+}
+
+.header-container.scrolled {
+    background: var(--background); /* Solid background on scroll */
+}
+
+.logo {
+    flex: 0 0 120px; /* Fixed width for logo */
+    display: flex;
+    justify-content: flex-start; /* Align logo to the left */
+}
+
+.logo img {
+    max-height: 50px; /* Limit logo height */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* Hamburger Menu */
+.nav-check {
+    display: none; /* Hide checkbox */
+}
+
+.nav-check-label {
+    display: none; /* Initially hidden */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    flex-direction: column; /* Stack lines */
+    justify-content: space-between; /* Evenly space lines */
+    height: 24px; /* Height for three lines */
+    width: 30px; /* Width of the button */
+    position: absolute; /* Position relative to the viewport */
+    top: 1.5rem; /* Distance from top */
+    right: 2rem; /* Distance from right */
+    z-index: 1000; /* Ensure it stays above other elements */
+}
+
+.nav-check-label span {
+    display: block; /* Each line is a block */
+    height: 3px; /* Thickness of each line */
+    width: 100%; /* Full width of the label */
+    background-color: var(--light); /* Line color */
+    border-radius: 2px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Transform lines on menu activation */
+.nav-check:checked ~ .nav-check-label span:nth-child(1) {
+    transform: rotate(45deg) translateY(10px);
+}
+
+.nav-check:checked ~ .nav-check-label span:nth-child(2) {
+    opacity: 0; /* Hide the middle line */
+}
+
+.nav-check:checked ~ .nav-check-label span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-10px);
+}
+
+nav {
+    flex: 1 1 auto; /* Allow navigation to grow/shrink */
+    display: flex; /* Flex layout */
+    justify-content: center; /* Center navigation items */
+}
+
+nav ul {
+    display: flex; /* Flex layout for list */
+    gap: 1rem; /* Spacing between items */
+    list-style: none; /* Remove default list style */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+nav a {
+    color: var(--light); /* Light color for text */
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem; /* Default font size */
+    font-weight: bold; /* Bold font */
+    text-transform: capitalize; /* Capitalize text */
+    position: relative; /* Position for pseudo-elements */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Smooth transitions */
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+}
+
+nav a:hover {
+    color: var(--orange); /* Change color on hover */
+    text-shadow: 4px 4px 5px rgba(0, 0, 0, 0.7); /* Enhance shadow on hover */
+}
+
+nav a::after {
+    content: ''; /* Decorative underline */
+    position: absolute;
+    left: 0;
+    bottom: -4px; /* Position below text */
+    width: 100%; /* Full width */
+    height: 2px; /* Thin line */
+    background: var(--orange); /* Match hover color */
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: right; /* Animate from right */
+    transition: transform 0.3s ease; /* Smooth animation */
+}
+
+nav a:hover::after {
+    transform: scaleX(1); /* Reveal underline */
+    transform-origin: left; /* Animate from left */
+}
+
+/* Button Styles */
+.hello {
+    flex: 0 0 120px; /* Fixed width for button */
+    display: flex; /* Flex layout */
+    justify-content: flex-end; /* Align to right */
+    align-items: center; /* Vertically center */
+}
+
+.hello-button {
+    background: linear-gradient(90deg, #FF4E50, #F9D423); /* Warm gradient */
+    color: var(--light); /* Light text */
+    border: 2px solid #FF4E50; /* Border matching gradient */
+    border-radius: 10px; /* Rounded corners */
+    padding: 0.6rem 1.5rem; /* Spacing for button */
+    font-size: 0.6rem; /* Smaller font */
+    font-weight: 700; /* Bold font */
+    cursor: pointer; /* Pointer cursor */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Add spacing between letters */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease; /* Smooth hover effects */
+}
+
+.hello-button:hover {
+    background: linear-gradient(90deg, #F9D423, #FF4E50); /* Reverse gradient */
+    color: var(--background); /* Dark text */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow */
+    transform: scale(1.1); /* Zoom effect */
+}
+
+.hello a {
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure button is clickable */
+}
+
+
+/* Hero Section */
+.hero {
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    display: grid; /* Center content using grid */
+    place-items: center; /* Center items in grid */
+    background: url('../images/Hero2.png') center/cover no-repeat, var(--background); /* Background image with fallback */
+    background-blend-mode: lighten; /* Blend mode for light effect */
+}
+
+#about {
+    scroll-margin-top: 10rem; /* Offset for fixed header */
+}
+
+/* Intro Section */
+.intro {
+    margin: 12rem auto; /* Center with vertical margin */
+    padding: 5rem; /* Inner spacing */
+    width: 80vw; /* Restrict width to 80% of viewport */
+    font-size: 0.75em; /* Standard font size */
+    font-weight: bold; /* Bold text for emphasis */
+    font-style: oblique; /* Italicized text */
+    text-align: justify; /* Align text evenly */
+    background: rgba(0, 0, 0, 0.05); /* Light contrast background */
+    border-left: 5px solid var(--orange); /* Decorative left border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+h3 {
+    font-size: 1.5em; /* Larger heading size */
+    line-height: 1.6; /* Improve readability */
+    color: var(--background); /* Match theme background */
+}
+
+q {
+    quotes: "“" "”" "‘" "’"; /* Define quote styles */
+    color: var(--background); /* Dark color for quotes */
+}
+
+q::before, q::after {
+    color: var(--red); /* Accent color for quotation marks */
+}
+
+/* Flex Container */
+.flex-container {
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack items vertically */
+    gap: 3rem; /* Spacing between items */
+    padding: 2rem; /* Inner spacing */
+    width: 80vw; /* Center content */
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Card Styles */
+.card {
+    display: flex; /* Flexbox layout */
+    flex-direction: row; /* Horizontal alignment */
+    align-items: center; /* Vertically center content */
+    gap: 2rem; /* Spacing between items */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Hide overflow for content alignment */
+    padding: 2rem; /* Inner spacing */
+    box-sizing: border-box; /* Include padding in total size */
+    height: 25rem; /* Fixed card height */
+}
+
+/* Article Content */
+.stay, .ski, .shop {
+    flex: 1 1 50%; /* Equal width distribution */
+    font-size: 0.8em; /* Smaller font size */
+    font-weight: bold; /* Bold text */
+    font-style: oblique; /* Italicized style */
+    text-align: justify; /* Align text evenly */
+    line-height: 1.6; /* Improve readability */
+}
+
+/* Photo Section */
+.photo {
+    flex: 1 1 50%; /* Equal width distribution */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-size: cover; /* Cover container */
+    background-position: center; /* Center background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Add depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.photo:hover {
+    transform: scale(1.05); /* Zoom-in effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+/* Specific Backgrounds */
+.stay-photo {
+    background-image: url('../images/stay3.jpg'); /* Image for stay section */
+    background-color: red; /* Fallback color */
+}
+
+.ski-photo {
+    background-image: url('../images/ski2.jpg'); /* Image for ski section */
+    background-color: blue; /* Fallback color */
+}
+
+.shop-photo {
+    background-image: url('../images/shop2.jpg'); /* Image for shop section */
+    background-color: green; /* Fallback color */
+}
+
+/* Section Anchors */
+#stay, #ski, #shop {
+    scroll-margin-top: 10rem; /* Offset for fixed header */
+}
+
+/* Onsens Section */
+.onsens {
+    margin: 8rem auto; /* Center section with vertical margin */
+    padding: 2rem; /* Inner spacing */
+    text-align: justify; /* Align text evenly */
+    gap: 1rem; /* Spacing between elements */
+    background-color: rgba(255, 255, 255, 0.9); /* Light contrast background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
+}
+
+/* Onsens Image */
+.onsens-photo {
+    width: 60vw; /* Restrict width to 60% of viewport */
+    height: 60vh; /* Proportional height */
+    border-radius: 10px; /* Rounded corners */
+    background: url('../images/onsen3.jpg') center/cover no-repeat, var(--light); /* Background image */
+    margin: 0 auto 2rem auto; /* Center with spacing */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+.onsens-photo:hover {
+    transform: scale(1.05); /* Zoom effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+}
+
+/* Onsens Typography */
+.onsens h4 {
+    font-size: 1.8em; /* Larger font size */
+    color: var(--background); /* Dark color for headings */
+    margin-bottom: 1rem; /* Space below heading */
+}
+
+/* Onsens Typography */
+.onsens p {
+    font-size: 0.9em; /* Adjusted font size for readability */
+    line-height: 1.6; /* Improved line spacing for readability */
+    color: var(--background); /* Use the primary theme color */
+}
+
+#onsens {
+    scroll-margin-top: 8rem; /* Offset to account for fixed headers */
+}
+
+/* Table Styles */
+table {
+    width: 100%; /* Full width for responsiveness */
+    border-collapse: collapse; /* Cleaner table borders */
+    margin: 2rem 0; /* Vertical spacing */
+    font-size: 1rem; /* Standard font size */
+    background-color: rgba(255, 255, 255, 0.9); /* Light table background */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    overflow: hidden; /* Maintain rounded corners for inner content */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Table Header */
+th {
+    background-color: var(--background); /* Match theme’s primary color */
+    color: var(--light); /* Contrast text */
+    font-weight: bold; /* Emphasized headers */
+    padding: 1rem; /* Padding for better spacing */
+    text-align: center; /* Center-align content */
+    font-size: 1.1rem; /* Slightly larger font size for headers */
+    text-transform: capitalize; /* Consistent styling */
+}
+
+/* Table Rows */
+td {
+    border: 1px solid #ddd; /* Subtle borders for separation */
+    padding: 1rem; /* Consistent cell padding */
+    text-align: center; /* Center-align content */
+    font-size: 0.9rem; /* Standard font size */
+    color: var(--background); /* Match text color with theme */
+    line-height: 1.5; /* Improved spacing */
+}
+
+/* Alternating Row Colors */
+tbody tr:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.03); /* Light gray background for odd rows */
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 1); /* White background for even rows */
+}
+
+/* Hover Effect for Rows */
+tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Highlighted background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+/* Table Caption */
+table caption {
+    font-size: 1.2rem; /* Adjusted size for prominence */
+    font-weight: bold; /* Bold for emphasis */
+    margin-bottom: 1rem; /* Spacing below the caption */
+    text-align: center; /* Center alignment */
+    color: var(--background); /* Consistent text color */
+}
+
+/* Top 10 Section */
+.top10 {
+    background-color: rgba(255, 255, 255, 0.9); /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 2rem; /* Inner spacing */
+    line-height: 1.8; /* Enhanced readability */
+    font-size: 0.9em; /* Slightly larger font size */
+}
+
+/* Top 10 Heading */
+.top10 h4 {
+    font-size: 1.8em; /* Prominent heading size */
+    margin-bottom: 1rem; /* Spacing below heading */
+    text-align: center; /* Center-align heading */
+    color: var(--background); /* Consistent text color */
+    text-transform: uppercase; /* Uppercase styling */
+}
+
+/* Top 10 List Styling */
+.top10 ul {
+    list-style: decimal inside; /* Use numbers for structured look */
+    padding-left: 1.5rem; /* Indent for alignment */
+}
+
+.top10 li {
+    margin-bottom: 1rem; /* Space between list items */
+    color: var(--background); /* Match primary text color */
+    cursor: pointer; /* Indicate interactivity */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+/* Top 10 List Item Hover & Click States */
+.top10 li:hover {
+    color: var(--red); /* Highlight in red on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.top10 li:active {
+    color: var(--background); /* Highlight in orange when clicked */
+    transform: scale(0.95); /* Shrink effect for feedback */
+}
+
+/* Link Styles for List Items */
+.top10 li a {
+    color: var(--background); /* Match primary text color */
+    text-decoration: none; /* Remove underline */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth hover effects */
+}
+
+.top10 li a:hover {
+    color: var(--red); /* Highlight in red on hover */
+}
+
+.top10 li a:visited {
+    color: var(--background); /* Consistent color for visited links */
+}
+
+.top10 li a:active {
+    color: var(--background); /* Highlight in orange when clicked */
+    transform: scale(0.95); /* Shrink effect */
+}
+
+/* Highlighting Important Text */
+.top10 strong {
+    color: var(--red); /* Highlight names in red */
+    text-transform: capitalize; /* Capitalize text */
+}
+
+#top-10 {
+    scroll-margin-top: 8rem; /* Offset for fixed header */
+}
+
+/* Contact Form Section */
+.contact-form {
+    width: 40%; /* Increased width for a balanced layout */
+    margin: 3rem auto;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 1rem;
+}
+
+#contact-us {
+    scroll-margin-top: 8rem; /* Adjust based on the height of the fixed header */
+}
+
+/* Form Heading */
+.contact-form h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--background); /* Dark color from theme */
+}
+
+/* Form Inputs and Textarea */
+input[type="text"], input[type="email"], textarea {
+    width: 100%; /* Full width for inputs */
+    padding: 0.5rem;
+    margin-bottom: 1.5rem; /* Extra spacing for a clean look */
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Subtle border */
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight inner shadow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus State */
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+    border-color: var(--red); /* Highlighted border on focus */
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.4); /* Glow effect */
+    outline: none;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background: linear-gradient(90deg, #FF4E50, #F9D423); /* Warm gradient */
+    color: var(--light); /* White text */
+    border: 2px solid #FF4E50; /* Border matches gradient */
+    border-radius: 10px; /* Rounded corners */
+    padding: 0.8rem 2rem; /* Larger padding for prominence */
+    font-size: 0.9rem; /* Font size for better readability */
+    font-weight: 700; /* Bold font */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    text-transform: uppercase; /* Capitalized text */
+    letter-spacing: 1px; /* Spacing for an elegant feel */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease; /* Smooth hover effects */
+}
+
+/* Hover State for Submit Button */
+input[type="submit"]:hover {
+    background: linear-gradient(90deg, #F9D423, #FF4E50); /* Reverse gradient */
+    color: var(--background); /* Black text for contrast */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Larger shadow */
+    transform: scale(1.1); /* Zoom effect */
+}
+
+/* Footer with Animation */
+footer {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap for smaller screens */
+    justify-content: space-between; /* Even spacing between sections */
+    align-items: flex-start; /* Align sections at the top */
+    background: var(--background); /* Match the website's dark theme */
+    padding: 3rem;
+    color: var(--light); /* Light text for readability */
+    font-family: 'Yuji Mai', Arial, sans-serif;
+    opacity: 0; /* Initially hidden for animation */
+    transform: translateY(50px); /* Offset for animation */
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth fade and move */
+    will-change: opacity, transform; /* Optimize animation performance */
+}
+
+/* Visible Footer State for Animation */
+footer.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Reset position */
+}
+
+/* Footer Section */
+.footer-section {
+    flex: 1 1 20%; /* Ensure equal space distribution */
+    margin: 1rem; /* Spacing between sections */
+    min-width: 200px; /* Prevent sections from collapsing */
+}
+
+/* Footer Links */
+.footer-links a {
+    color: var(--red); /* Highlight links in red */
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.footer-links a:hover {
+    color: var(--orange); /* Change color on hover */
+}
+
+/* Footer Paragraphs */
+footer p {
+    font-size: 0.9rem;
+    line-height: 1.6; /* Improve readability */
+    margin-top: 0.5rem;
+    color: rgba(255, 255, 255, 0.8); /* Slightly lighter text for contrast */
+}
+/* Responsive Design */
+
+/* Adjustments for medium screens (max-width: 768px) */
+@media (max-width: 768px) {
+    /* Typography */
+    h1 {
+        font-size: 2rem; /* Adjust main heading size */
+    }
+
+    h2 {
+        font-size: 3rem; /* Adjust subheading size */
+    }
+
+    h3, h4 {
+        font-size: 1.2em; /* Reduce size for smaller headings */
+    }
+
+    /* Header */
+    .header-container {
+        flex-direction: row; /* Maintain horizontal layout */
+        justify-content: space-between; /* Spread elements */
+        align-items: center; /* Center elements vertically */
+    }
+
+    .nav-check-label {
+        display: flex; /* Show hamburger menu */
+        flex-direction: column; /* Stack the lines */
+        justify-content: space-between; /* Evenly space lines */
+        height: 17px; /* Slightly taller height for more spacing */
+        width: 25px; /* Adjust width if needed */
+        position: absolute;
+        top: 0.5rem; /* Position from the top */
+        right: 2rem; /* Position from the right */
+        z-index: 1000; /* Ensure it stays above other elements */
+        cursor: pointer; /* Pointer cursor for interaction */
+        gap: 6px; /* Add space between lines */
+    }
+    
+    .nav-check-label span {
+        display: block; /* Each line is a block */
+        height: 3px; /* Thickness of each line */
+        width: 100%; /* Full width */
+        background-color: var(--light); /* Line color */
+        border-radius: 2px; /* Rounded corners */
+        transition: all 0.3s ease; /* Smooth transition */
+    }
+
+    .logo {
+
+        position: absolute;
+        left: 50%; /* Center horizontally */
+        transform: translateX(-50%); /* Adjust for centering */
+    }
+
+    .logo img {
+        max-height: 25px; /* Reduce logo height by 50% */
+        width: auto; /* Maintain aspect ratio */
+    }
+    
+    .hello {
+        display: none;
+        order: 2; /* Position button on the right */
+    }
+
+    nav ul {
+        flex-direction: column; /* Stack navigation items */
+        position: absolute; /* Position menu */
+        top: 100%; /* Below header */
+        left: 0; /* Align menu with viewport */
+        background: var(--background); /* Dark background */
+        width: 100%; /* Full width */
+        max-height: 0; /* Initially hidden */
+        overflow: hidden; /* Hide overflow */
+        transition: max-height 0.3s ease; /* Smooth dropdown */
+    }
+
+    .nav-check:checked ~ nav ul {
+        max-height: 300px; /* Show menu */
+    }
+
+    nav ul a {
+        padding: 1rem; /* Add spacing for touch */
+        text-align: center; /* Center-align links */
+        font-size: small;
+    }
+
+    /* Flex Containers */
+    .flex-container {
+        gap: 2rem; /* Adjust spacing */
+    }
+
+    /* Cards */
+    .card {
+        flex-direction: column; /* Stack items vertically */
+        height: auto; /* Adjust height */
+        padding: 1rem; /* Reduce padding */
+    }
+
+    /* Intro Section */
+    .intro {
+        padding: 3rem; /* Adjust padding */
+        font-size: 0.9em; /* Reduce font size */
+    }
+
+    /* Contact Form */
+    .contact-form {
+        width: 90%; /* Adjust width */
+        padding: 2rem; /* Adjust padding */
+    }
+
+    input[type="submit"] {
+        padding: 0.8rem 1.5rem; /* Adjust button size */
+    }
+
+    /* Footer */
+    footer {
+        flex-direction: column; /* Stack sections vertically */
+        text-align: center; /* Center-align content */
+    }
+
+    .footer-section {
+        margin-bottom: 2rem; /* Adjust spacing */
+    }
+
+    footer p {
+        font-size: 0.8rem; /* Reduce text size */
+    }
+}
+
+/* Adjustments for small screens (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Typography */
+    h1 {
+        font-size: 1.3rem; /* Reduce main heading size */
+    }
+
+    h2 {
+        font-size: 2.5rem; /* Reduce subheading size */
+    }
+
+    /* Header */
+    .header-container {
+        flex-direction: row; /* Horizontal layout */
+        justify-content: space-between; /* Spread elements */
+        align-items: center; /* Align items vertically */
+    }
+
+    .nav-check-label {
+        justify-content: center; /* Center-align hamburger */
+        width: 20px; /* Smaller width */
+        height: 15px; /* Smaller height */
+        position: absolute; /* Position it at the top */
+        top: 10px; /* Adjust distance from the top of the screen */
+        right: 10px; /* Adjust distance from the right */
+    }
+
+    .nav-check-label span {
+        height: 2px; /* Thinner lines */
+        width: 100%; /* Full width of the reduced label */
+    }
+    
+    .hello {
+        justify-content: flex-end; /* Align button on the right */
+    }
+
+    nav ul {
+        max-height: 0; /* Initially hidden */
+        width: 100%; /* Full width dropdown */
+        transition: max-height 0.3s ease; /* Smooth reveal */
+    }
+
+    .nav-check:checked ~ nav ul {
+        max-height: 300px; /* Show dropdown */
+    }
+
+    nav ul a {
+        padding: 1rem; /* Increase touch area */
+    }
+
+    /* Flex Containers */
+    .flex-container {
+        gap: 1.5rem; /* Reduce spacing */
+    }
+
+    /* Cards */
+    .card {
+        height: auto; /* Remove fixed height */
+        padding: 1rem; /* Adjust padding */
+    }
+    .onsens {
+        margin: 4rem auto; /* Adjust container margins */
+        padding: 1rem; /* Compact padding */
+    }
+
+    .onsens table {
+        width: 100%; /* Ensure the table fits within the container */
+        font-size: 0.8rem; /* Reduce font size */
+        margin: 1rem 0; /* Add vertical spacing */
+        border-radius: 8px; /* Smaller rounded corners */
+        overflow-x: auto; /* Allow horizontal scrolling */
+        display: block; /* Make table a block-level element for scrolling */
+    }
+
+    .onsens table thead, 
+    .onsens table tbody, 
+    .onsens table th, 
+    .onsens table td, 
+    .onsens table tr {
+        display: block; /* Ensure proper structure for scrollable tables */
+    }
+
+    .onsens th, .onsens td {
+        font-size: 0.9rem; /* Adjust text size for smaller screens */
+        padding: 0.5rem; /* Reduce cell padding */
+        text-align: left; /* Left-align text for better readability */
+    }
+
+    .onsens caption {
+        font-size: 1rem; /* Keep caption legible */
+        margin-bottom: 1rem; /* Space below caption */
+    }
+
+    .onsens tbody tr:nth-child(odd) {
+        background-color: rgba(0, 0, 0, 0.05); /* Light gray for odd rows */
+    }
+
+    .onsens tbody tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 1); /* White for even rows */
+    }
+
+    .onsens tbody tr:hover {
+        background-color: rgba(0, 0, 0, 0.1); /* Slight highlight on hover */
+    }
+    /* Contact Form */
+    .contact-form {
+        width: 100%; /* Full width */
+        padding: 1.5rem; /* Adjust padding */
+    }
+
+    input[type="submit"] {
+        font-size: 0.8rem; /* Reduce font size */
+    }
+
+    /* Footer */
+    footer {
+        flex-direction: column; /* Stack sections */
+        text-align: center; /* Center-align text */
+    }
+
+    .footer-section {
+        margin-bottom: 1.5rem; /* Adjust spacing */
+    }
+
+    footer p {
+        font-size: 0.7rem; /* Reduce text size */
+    }
+}
