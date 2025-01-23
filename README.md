@@ -18,7 +18,7 @@ This project differentiates itself through its modern design, smooth animations,
 ### Website Screenshot
 ![Screenshot of the Hokkaido Tourism website](./docs/assets/images/Website%20Screenshot%20.png)
 
-- [For a full web description of the Port-Folio-Demo](https://bonda3vaax.github.io/Hokkaido-Tourism-2.0/)
+- [For a full web description of the Hokkaido-Tourism-2.0](https://bonda3vaax.github.io/Hokkaido-Tourism-2.0/)
 
 ## Installation
 ### Requirements
